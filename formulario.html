@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Modificar Registro</title>
+  </head>
+  <body>
+    <h2>Modificar Datos</h2>
+    <form
+      action="http://localhost/modificar.php"
+      method="post"
+      target="frameResultados"
+    >
+      <label for="matricula">Matrícula:</label>
+      <input type="text" name="matricula" id="matricula" required /><br /><br />
+
+      <input type="checkbox" name="modificar[]" value="nombre" id="chkNombre" />
+      <label for="chkNombre">Nombre</label>
+      <input type="text" name="nombre" /><br /><br />
+
+      <input type="checkbox" name="modificar[]" value="correo" id="chkCorreo" />
+      <label for="chkCorreo">Correo</label>
+      <input type="email" name="correo" /><br /><br />
+
+      <button type="submit">Actualizar</button>
+
+      <br /><br />
+      <iframe
+        name="frameResultados"
+        style="width: 100%; height: 200px; border: 1px solid gray"
+      ></iframe>
+    </form>
+  </body>
+</html>
