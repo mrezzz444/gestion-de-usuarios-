@@ -3,19 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <title>Modificar Registro</title>
-    <script>
-      function toggleInput(checkbox, inputId) {
-        const input = document.getElementById(inputId);
+  <script>
+      function toggleInput(checkboxId, inputName) {
+        const checkbox = document.getElementById(checkboxId);
+        const input = document.querySelector(`input[name='${inputName}']`);
         input.disabled = !checkbox.checked;
-        if (!checkbox.checked) {
-          input.value = "";
-        }
       }
 
       window.onload = function () {
-        document.getElementById("nombre").disabled = true;
-        document.getElementById("correo").disabled = true;
+        
+        toggleInput("chkNombre", "nombre");
+        toggleInput("chkCorreo", "correo");
+
+        document.getElementById("chkNombre").addEventListener("change", function () {
+          toggleInput("chkNombre", "nombre");
+        });
+
+        document.getElementById("chkCorreo").addEventListener("change", function () {
+          toggleInput("chkCorreo", "correo");
+        });
       };
+    </script>
     </script>
   </head>
   <body>
