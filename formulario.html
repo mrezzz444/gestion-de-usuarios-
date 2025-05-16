@@ -3,6 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <title>Modificar Registro</title>
+    <script>
+      function toggleInput(checkbox, inputId) {
+        const input = document.getElementById(inputId);
+        input.disabled = !checkbox.checked;
+        if (!checkbox.checked) {
+          input.value = "";
+        }
+      }
+
+      window.onload = function () {
+        document.getElementById("nombre").disabled = true;
+        document.getElementById("correo").disabled = true;
+      };
+    </script>
   </head>
   <body>
     <h2>Modificar Datos</h2>
