@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Modificar Registro</title>
-  <script>
+    <script>
       function toggleInput(checkboxId, inputName) {
         const checkbox = document.getElementById(checkboxId);
         const input = document.querySelector(`input[name='${inputName}']`);
@@ -11,21 +11,97 @@
       }
 
       window.onload = function () {
-        
         toggleInput("chkNombre", "nombre");
         toggleInput("chkCorreo", "correo");
 
-        document.getElementById("chkNombre").addEventListener("change", function () {
-          toggleInput("chkNombre", "nombre");
-        });
+        document
+          .getElementById("chkNombre")
+          .addEventListener("change", function () {
+            toggleInput("chkNombre", "nombre");
+          });
 
-        document.getElementById("chkCorreo").addEventListener("change", function () {
-          toggleInput("chkCorreo", "correo");
-        });
+        document
+          .getElementById("chkCorreo")
+          .addEventListener("change", function () {
+            toggleInput("chkCorreo", "correo");
+          });
       };
     </script>
-    </script>
+
+    <style>
+      body {
+        background-color: #c69fd793;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h2 {
+        text-align: center;
+        color: rgb(12, 56, 12);
+      }
+
+      .form-row {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        text-align: center;
+      }
+
+      .form-group label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+        color: black;
+      }
+
+      input[type="text"],
+      input[type="email"] {
+        padding: 8px;
+        border: 2px solid #82599493;
+        border-radius: 8px;
+        width: 200px;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .botones {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .botones button {
+        background-color: #4e225c;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        font-weight: bold;
+        font-size: 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .botones button:hover {
+        background-color: #77348b;
+      }
+
+      iframe {
+        width: 100%;
+        height: 300px;
+        border: 2.5px solid #82599493;
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+    </style>
   </head>
+
   <body>
     <h2>Modificar Datos</h2>
     <form
@@ -33,24 +109,43 @@
       method="post"
       target="frameResultados"
     >
-      <label for="matricula">Matrícula:</label>
-      <input type="text" name="matricula" id="matricula" required /><br /><br />
+      <div class="form-row">
+        <div class="form-group">
+          <label for="matricula"><i>Matrícula</i></label>
+          <input type="text" name="matricula" id="matricula" required />
+        </div>
 
-      <input type="checkbox" name="modificar[]" value="nombre" id="chkNombre" />
-      <label for="chkNombre">Nombre</label>
-      <input type="text" name="nombre" /><br /><br />
+        <div class="form-group">
+          <label for="chkNombre"><i>Nombre</i></label>
+          <input
+            type="checkbox"
+            name="modificar[]"
+            value="nombre"
+            id="chkNombre"
+          />
+          <input type="text" name="nombre" id="nombre" />
+        </div>
 
-      <input type="checkbox" name="modificar[]" value="correo" id="chkCorreo" />
-      <label for="chkCorreo">Correo</label>
-      <input type="email" name="correo" /><br /><br />
+        <div class="form-group">
+          <label for="chkCorreo"><i>Correo</i></label>
+          <input
+            type="checkbox"
+            name="modificar[]"
+            value="correo"
+            id="chkCorreo"
+          />
+          <input type="email" name="correo" id="correo" />
+        </div>
+      </div>
 
-      <button type="submit">Actualizar</button>
+      <div class="botones">
+        <button type="submit">Actualizar</button>
+        <button type="button" onclick="window.open('registros.html', '_blank')">
+          Registros
+        </button>
+      </div>
 
-      <br /><br />
-      <iframe
-        name="frameResultados"
-        style="width: 100%; height: 200px; border: 1px solid gray"
-      ></iframe>
+      <iframe name="frameResultados"></iframe>
     </form>
   </body>
 </html>

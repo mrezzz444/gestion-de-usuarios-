@@ -2,6 +2,147 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>registros</title>
+    <title>Registros</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #c69fd793;
+        margin: 0;
+        padding: 20px;
+      }
+
+      h2 {
+        text-align: center;
+        color: rgb(12, 56, 12);
+      }
+
+      .form-row {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        text-align: center;
+      }
+
+      .form-group label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: block;
+        color: black;
+      }
+
+      .dato {
+        border: 2px solid #82599493;
+        border-radius: 10px;
+        padding: 12px 20px;
+        width: 230px;
+        font-weight: bold;
+        font-size: 15px;
+        background-color: #fdf5ff;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .botones {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+      }
+
+      .botones button {
+        background-color: #77348b;
+        color: white;
+        padding: 12px 30px;
+        border: none;
+        font-weight: bold;
+        font-size: 14px;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .botones button:hover {
+        background-color: #7c518e93;
+      }
+    </style>
   </head>
+  <body>
+    <br />
+    <h2>Registros</h2>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label><i>Matrícula</i></label>
+        <div class="dato" id="matricula">Cargando...</div>
+      </div>
+      <div class="form-group">
+        <label><i>Nombre</i></label>
+        <div class="dato" id="nombre">Cargando...</div>
+      </div>
+      <div class="form-group">
+        <label><i>Correo</i></label>
+        <div class="dato" id="correo">Cargando...</div>
+      </div>
+    </div>
+
+    <div class="botones">
+      <button onclick="registroAnterior()">&lt;&lt; Registro anterior</button>
+      <button onclick="registroSiguiente()">Siguiente registro &gt;&gt;</button>
+    </div>
+
+    <script>
+      let registros = [];
+      let index = 0;
+
+      async function cargarRegistros() {
+        try {
+          const res = await fetch("http://localhost/registrar.php");
+          registros = await res.json();
+
+          if (registros.length > 0) {
+            index = 0;
+            mostrarRegistro();
+          } else {
+            document.getElementById("matricula").textContent = "Sin registros";
+            document.getElementById("nombre").textContent = "-";
+            document.getElementById("correo").textContent = "-";
+          }
+        } catch (error) {
+          console.error("Error al cargar registros:", error);
+          document.getElementById("matricula").textContent = "Error al cargar";
+          document.getElementById("nombre").textContent = "-";
+          document.getElementById("correo").textContent = "-";
+        }
+      }
+
+      function mostrarRegistro() {
+        if (registros.length > 0 && index >= 0 && index < registros.length) {
+          const actual = registros[index];
+          document.getElementById("matricula").textContent = actual.matricula;
+          document.getElementById("nombre").textContent = actual.nombre;
+          document.getElementById("correo").textContent = actual.correo;
+        }
+      }
+
+      function registroAnterior() {
+        if (index > 0) {
+          index--;
+          mostrarRegistro();
+        }
+      }
+
+      function registroSiguiente() {
+        if (index < registros.length - 1) {
+          index++;
+          mostrarRegistro();
+        }
+      }
+
+      window.onload = cargarRegistros;
+    </script>
+  </body>
 </html>
