@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Visualización de Usuarios</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #8a2be2;
+        --secondary-color: #6a0dad;
+        --accent-color: #b030b0;
+        --text-light: #f8f9fa;
+        --text-dark: #343a40;
+        --hover-color: #9b30ff;
+        --transition-speed: 0.3s;
+      }
+
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: "Roboto", sans-serif;
+        background-color: #f5f5f5;
+      }
+
+      .topbar {
+        height: 70px;
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: var(--text-light);
+        display: flex;
+        align-items: center;
+        padding: 0 30px;
+        font-size: 24px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .topbar-title {
+        font-weight: 500;
+        letter-spacing: 0.5px;
+      }
+
+      .nav-links {
+        display: flex;
+        margin-left: auto;
+      }
+
+      .nav-link {
+        color: var(--text-light);
+        text-decoration: none;
+        margin-left: 30px;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: 400;
+        transition: all var(--transition-speed) ease;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-link i {
+        margin-right: 8px;
+      }
+
+      .iframe-container {
+        position: absolute;
+        top: 70px; /* igual a la altura del topbar */
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        border-radius: 8px 8px 0 0;
+        overflow: hidden;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: #fff;
+      }
+
+      /* Efecto de carga */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      body {
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .topbar {
+          padding: 0 15px;
+          height: 60px;
+          font-size: 20px;
+        }
+
+        .nav-link {
+          margin-left: 15px;
+          padding: 6px 10px;
+          font-size: 14px;
+        }
+
+        .iframe-container {
+          top: 60px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .topbar {
+          flex-direction: column;
+          height: auto;
+          padding: 10px;
+        }
+
+        .topbar-title {
+          margin-bottom: 10px;
+        }
+
+        .nav-links {
+          margin-left: 0;
+          width: 100%;
+          justify-content: space-around;
+        }
+
+        .nav-link {
+          margin: 0 5px;
+          padding: 5px 8px;
+        }
+
+        .iframe-container {
+          top: 100px;
+        }
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="topbar">
+      <div class="topbar-title">Visualización de Usuarios</div>
+      <div class="nav-links">
+        <a href="formulario.html" target="pantallas" class="nav-link">
+          <i class="fas fa-user-edit"></i> Modificar Datos
+        </a>
+        <a href="registros.html" target="pantallas" class="nav-link">
+          <i class="fas fa-list-alt"></i> Ver Registros
+        </a>
+      </div>
+    </div>
+
+    <div class="iframe-container">
+      <iframe name="pantallas" src="formulario.html"></iframe>
+    </div>
+  </body>
+</html>
